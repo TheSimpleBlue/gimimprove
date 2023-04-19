@@ -65,6 +65,14 @@ public interface GimImproveConfig extends Config
 	default boolean detectLogUniqueToGroup() { return true; }
 
 	@ConfigItem(
+			position = 4,
+			keyName = "users",
+			name = "Comma-separated usernames",
+			description = "Comma-separated list of users (max 5) to use instead of GIM group. Will ignore GIM group if this is populated."
+	)
+	default String users() { return ""; }
+
+	@ConfigItem(
 			position = 5,
 			keyName = "color1",
 			name = "User 1 color",

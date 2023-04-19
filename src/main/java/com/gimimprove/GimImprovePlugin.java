@@ -24,6 +24,7 @@
  */
 package com.gimimprove;
 
+import com.google.common.base.Splitter;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -194,13 +195,22 @@ public class GimImprovePlugin extends Plugin
 		List<Color> colorList =
 				Arrays.asList(config.color1(), config.color2(), config.color3(), config.color4(), config.color5());
 		USER_MAP.clear();
-		ClanSettings groupIronClan = client.getClanSettings(1);
-		if (groupIronClan != null) {
-			int i = 0;
-			for (ClanMember member: groupIronClan.getMembers()){
-				USER_MAP.put(member.getName(), new User(member.getName(), colorList.get(i)));
-				i++;
+		Set<String> users = new HashSet<>();
+		if (!config.users().isEmpty()) {
+			List<String> results = Splitter.on(",").trimResults().splitToList(config.users());
+			users.addAll(results);
+		} else {
+			ClanSettings groupIronClan = client.getClanSettings(1);
+			if (groupIronClan != null) {
+				for (ClanMember member : groupIronClan.getMembers()) {
+					users.add(member.getName());
+				}
 			}
+		}
+		int i = 0;
+		for (String username : users) {
+			USER_MAP.put(username, new User(username, colorList.get(i)));
+			i++;
 		}
 	}
 
