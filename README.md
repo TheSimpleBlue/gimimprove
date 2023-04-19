@@ -1,5 +1,5 @@
 # GIM Improve Plugin
-A [Runelite](https://github.com/runelite/runelite) plugin that adds Group Ironm Man Quality of Life Improvements - puts GIM chat into PMs and GIM collection log visual indicators
+A [Runelite](https://github.com/runelite/runelite) plugin that adds Group Iron Man Quality of Life Improvements - puts GIM chat into PMs and GIM collection log visual indicators
 
 
 ## Features
